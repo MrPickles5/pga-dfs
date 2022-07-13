@@ -1,0 +1,5 @@
+# Ignore jupyter checkpoints
+src/.ipynb_checkpoints/
+
+# Ignore pycaches
+src/__pycache__

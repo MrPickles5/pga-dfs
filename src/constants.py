@@ -2,10 +2,10 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-tournament = 'Scottish Open'
+tournament = 'British Open'
 
-focus_stat = 'ttg-sg'
-focus_stat_2 = 'putt-sg'
+focus_stat = 'putt-sg'
+focus_stat_2 = 'arg-sg'
 
 create = True
 display_num = 10
