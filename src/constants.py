@@ -2,10 +2,11 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-tournament = 'British Open'
+tournament = 'british-open' # Automate somehow?
 
 focus_stat = 'putt-sg'
-focus_stat_2 = 'arg-sg'
+focus_stat_2 = 'ott-sg'
+focus_stat_3='arg-sg'
 
 create = True
 display_num = 10
@@ -31,10 +32,3 @@ def pandas_settings():
     plt.style.use('fivethirtyeight')
     
     return None
-
-def tournament_fname():
-    return(tournament.lower().replace(' ', '-'))
-
-
-
-# tournament = 'Scottish Open'
