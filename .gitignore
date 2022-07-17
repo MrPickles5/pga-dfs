@@ -6,3 +6,6 @@ src/__pycache__
 
 # Ignore .lock file, only want .toml for dependencies
 poetry.lock
+
+# Ignore pickle files
+data/*/*.pkl
