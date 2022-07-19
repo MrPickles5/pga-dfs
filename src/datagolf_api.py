@@ -9,7 +9,7 @@ import datagolf_utils as dutils
 
 @cache
 def ctype(c):
-    return {'name': 'str', 'proj-pts': 'float'}.get(c, 'str')
+    return {'name': 'str'}.get(c, 'float32')
 
 @cache
 def load_field():
@@ -44,27 +44,58 @@ def load_projections():
 def pickle_projections():
     
     df=(pd
-        .DataFrame( load_projections(), columns=('player_name', 'proj_pts') )
-        .rename({'player_name': 'name', 'proj_pts': 'proj-pts'}, axis=1)
+        .DataFrame( load_projections(), columns=('player_name', 'proj_points') )
+        .rename({'player_name': 'name', 'proj_points': 'proj-pts'}, axis=1)
        )
     
     for c in df.columns:
         df[c]=df[c].astype(ctype(c))
-    
-    print(df.head())
-    
+
     df.to_pickle('../data/pickle-buffer/proj-pts.pkl')
     
     return None
-
-pickle_projections()
     
     
 def preview():
     return pd.read_pickle('../data/pickle-buffer/proj-pts.pkl').head(10)
 
 def proj_pts(name):
-    proj=pd.read_pickle('../data/pickle-buffer/proj-pts.pkl')
-    proj.index=proj['name']
-    proj=proj.drop('name', axis=1)
-    return proj.loc[name,'proj-pts'] if name in proj.index else 0.0
+    pts=pd.read_pickle('../data/pickle-buffer/proj-pts.pkl')
+    pts.index=pts['name']
+    pts=pts.drop('name', axis=1)
+    return pts.loc[name,'proj-pts'] if name in pts.index else 0.0
+
+
+@cache
+def load_skills_decomp():
+    url='https://feeds.datagolf.com/preds/player-decompositions?tour=pga&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
+    players=requests.get(url).json()['players']
+    for player in players:
+        player['player_name'] = dutils.clean_name( player['player_name'] )
+    return players
+
+def pickle_skills():
+    
+    df=(pd
+        .DataFrame( load_skills_decomp(), columns=('player_name', 'final_pred') )
+        .rename({'player_name': 'name', 'final_pred': 'cfit-adj'}, axis=1)
+       )
+    
+    for c in df.columns:
+        df[c]=df[c].astype(ctype(c))
+
+    df.to_pickle('../data/pickle-buffer/skills-decomp.pkl')
+    
+    return None
+
+def proj_skd(name):
+    skd=pd.read_pickle('../data/pickle-buffer/skills-decomp.pkl')
+    skd.index=skd['name']
+    skd=skd.drop('name', axis=1)
+    return skd.loc[name, 'cfit-adj'] if name in skd.index else 0.0
+
+def driver():
+    pickle_projections()
+    pickle_skills()
+    
+driver()
