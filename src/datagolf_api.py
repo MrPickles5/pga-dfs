@@ -7,48 +7,64 @@ from functools import cache
 
 import datagolf_utils as dutils
 
-
-
-data = pd.DataFrame(res['field'])
-data['r4_teetime'] = data['r4_teetime'].astype('str')
+@cache
+def ctype(c):
+    return {'name': 'str', 'proj-pts': 'float'}.get(c, 'str')
 
 @cache
 def load_field():
     url='https://feeds.datagolf.com/field-updates?tour=pga&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
-    players = request.get(url).json()['field']
+    players=request.get(url).json()['field']
     for player in players:
-        players['player_name'] = dutils.clean_name(player['player_name'])
+        player['player_name'] = dutils.clean_name( player['player_name'] )
     return players
 
 @cache
 def load_field_made_cut():
-    field = load_field()
-    return dict(filter( field[k]['r4_teetime']!='None' for k,v in field.items() ))
+    field=load_field()
+    return dict( filter( field[k]['r4_teetime']!='None' for k,v in field.items() ) )
     
 
 def players_frame(cut=False):
     if cut:
         return pd.DataFrame( load_field_made_cut() )
     return pd.DataFrame( load_field() )
-    
-made_cut = data.loc[data['r4_teetime']!='None'].reset_index(drop=True) #*
-made_cut['player_name'] = made_cut['player_name'].astype('str')
-
-
-made_cut['name'] = made_cut['player_name'].apply( dutils.clean_name )
 
 def players_who_made_cut():
-    return( tuple(made_cut['name'].values.tolist()) )
+    return tuple(made_cut['name'].values.tolist())
 
-proj_url='https://feeds.datagolf.com/preds/fantasy-projection-defaults?tour=pga&site=draftkings&slate=showdown&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
-pres = requests.get(proj_url).json()
+@cache
+def load_projections():
+    url='https://feeds.datagolf.com/preds/fantasy-projection-defaults?tour=pga&site=fanduel&slate=main&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
+    players=requests.get(url).json()['projections']
+    for player in players:
+        player['player_name']=dutils.clean_name(player['player_name'])
+    return tuple(players)
 
-proj=pd.DataFrame(pres['projections'])
-proj['name'] = proj['player_name'].apply( dutils.clean_name )
-proj=proj.loc[:,['name','proj_points']]
-proj.index=proj['name']
-proj=proj.drop('name', axis=1)
-proj.to_pickle('../data/pickle-buffer/proj-pts.pkl')
+def pickle_projections():
+    
+    df=(pd
+        .DataFrame( load_projections(), columns=('player_name', 'proj_pts') )
+        .rename({'player_name': 'name', 'proj_pts': 'proj-pts'}, axis=1)
+       )
+    
+    for c in df.columns:
+        df[c]=df[c].astype(ctype(c))
+    
+    print(df.head())
+    
+    df.to_pickle('../data/pickle-buffer/proj-pts.pkl')
+    
+    return None
+
+pickle_projections()
+    
+    
+def preview():
+    return pd.read_pickle('../data/pickle-buffer/proj-pts.pkl').head(10)
 
 def proj_pts(name):
-    return(proj.loc[name,'proj_points'] if name in proj.index else 0.0)
+    proj=pd.read_pickle('../data/pickle-buffer/proj-pts.pkl')
+    proj.index=proj['name']
+    proj=proj.drop('name', axis=1)
+    return proj.loc[name,'proj-pts'] if name in proj.index else 0.0

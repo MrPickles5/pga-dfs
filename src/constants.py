@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-tournament = 'british-open' # Automate somehow?
+tournament = '3m-open' # Automate somehow?
 
 focus_stat = 'putt-sg'
 focus_stat_2 = 'ott-sg'
