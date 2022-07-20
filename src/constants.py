@@ -20,6 +20,7 @@ keep_cols = [
     'Injury Indicator'
 ]
 
+# Customization / style file later
 def pandas_settings():
     pd.set_option("display.max_rows",1000)
     pd.set_option("display.max_columns",1000)

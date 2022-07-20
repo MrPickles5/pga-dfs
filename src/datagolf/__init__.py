@@ -1,3 +1,3 @@
-from .driver import datagolf
+from .core import datagolf
 
 __version__="1.0.0"
