@@ -62,4 +62,5 @@ cython_debug/
 
 # --- 7 ---
 data/pickle-buffer/*
+data/lineups-created/*
 .pkl
