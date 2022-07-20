@@ -5,18 +5,14 @@ import pandas as pd
 
 from functools import cache
 
-import datagolf_utils as dutils
-
-@cache
-def ctype(c):
-    return {'name': 'str'}.get(c, 'float32')
+from .devtools.aux import Clean
 
 @cache
 def load_field():
     url='https://feeds.datagolf.com/field-updates?tour=pga&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
     players=request.get(url).json()['field']
     for player in players:
-        player['player_name'] = dutils.clean_name( player['player_name'] )
+        player['player_name'] = Clean.name( player['player_name'] )
     return players
 
 @cache
@@ -38,7 +34,7 @@ def load_projections():
     url='https://feeds.datagolf.com/preds/fantasy-projection-defaults?tour=pga&site=fanduel&slate=main&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
     players=requests.get(url).json()['projections']
     for player in players:
-        player['player_name']=dutils.clean_name(player['player_name'])
+        player['player_name']=Clean.name(player['player_name'])
     return tuple(players)
 
 def pickle_projections():
@@ -71,7 +67,7 @@ def load_skills_decomp():
     url='https://feeds.datagolf.com/preds/player-decompositions?tour=pga&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
     players=requests.get(url).json()['players']
     for player in players:
-        player['player_name'] = dutils.clean_name( player['player_name'] )
+        player['player_name'] = Clean.name( player['player_name'] )
     return players
 
 def pickle_skills():
