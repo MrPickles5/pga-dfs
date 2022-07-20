@@ -1,6 +1,6 @@
 import constants
 
-slices=3
+slices=2
 min_salary=8000
 cost_range = range(595,601)
 
