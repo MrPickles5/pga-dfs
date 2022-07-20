@@ -49,6 +49,7 @@ pip-delete-this-directory.txt
 
 
 # --- 5 ---
+*~
 .env
 .venv
 env/
@@ -60,4 +61,5 @@ ENV/
 cython_debug/
 
 # --- 7 ---
+data/pickle-buffer/*
 .pkl
