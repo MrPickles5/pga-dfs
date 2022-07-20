@@ -8,4 +8,4 @@ src/__pycache__
 poetry.lock
 
 # Ignore pickle files
-data/*/*.pkl
+*.pkl
