@@ -1,10 +1,12 @@
 # Ignore jupyter checkpoints
 src/.ipynb_checkpoints/
 src/datagolf/.ipynb_checkpoints
+src/datagolf/*/.ipynb_checkpoints
 
 # Ignore pycaches
 src/__pycache__
 src/datagolf/__pycache__
+src/datagolf/*/__pycache__
 
 # Ignore .lock file, only want .toml for dependencies
 poetry.lock
