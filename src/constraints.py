@@ -15,11 +15,11 @@ elif constants.focus_stat_3 is None:
     sg_cols = sg_cols[:2]
     val_cols = val_cols[:2]
 
-cols_to_sum = ['salary', 'proj-pts', 'cfit-pts'] #+ sg_cols + val_cols
+cols_to_sum = ['salary', 'proj-pts'] #, 'cfit-pts'] #+ sg_cols + val_cols
 cols_order = [
     'salary',
     'proj-pts',
-    'cfit-pts',
+    #'cfit-pts',
     #constants.focus_stat,
     #f'{constants.focus_stat}-per-10k',
     #constants.focus_stat_2,
