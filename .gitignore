@@ -1,21 +1,63 @@
-# Ignore jupyter checkpoints
+# ( https://github.com/github/gitignore )
 
-src/.ipynb_checkpoints/
-src/datagolf/.ipynb_checkpoints
-src/datagolf/*/.ipynb_checkpoints
+# Listed at top of file so can quickly scan if files are ignored.
+# Preferrable to parsing file extensions.
 
-
-# Ignore pycaches
-
-src/__pycache__
-src/datagolf/__pycache__
-src/datagolf/*/__pycache__
-
-
-# Ignore .lock file, only want .toml for dependencies
-
-poetry.lock
+# Ignoring files from:
+#   1. Jupyter Notebook meta
+#   2. Compilation & Optimization & DLL
+#   3. Distribution & Packaging
+#   4. Install logs
+#   5. Environments
+#   6. Cython debugging
+#   7. *Pickle files
 
 
-# Ignore pickle files ==> not UTF-8 and spawned by program
-*.pkl
+# --- 1 ---
+.ipynb_checkpoints
+
+
+# --- 2 ---
+__pycache__/
+*.py[cod]
+*$py.class
+
+
+# --- 3 ---
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+
+# --- 4 ---
+pip-log.txt
+pip-delete-this-directory.txt
+
+
+# --- 5 ---
+.env
+.venv
+env/
+venv/
+ENV/
+
+
+# --- 6 ---
+cython_debug/
+
+# --- 7 ---
+.pkl
