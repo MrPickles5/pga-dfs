@@ -1,7 +1,7 @@
 import constants
 
 slices=2
-min_salary=7500
+min_salary=8000
 cost_range = range(590,596)
 
 sg_cols = [ constants.focus_stat, constants.focus_stat_2, constants.focus_stat_3 ]
