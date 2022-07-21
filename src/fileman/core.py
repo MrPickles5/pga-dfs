@@ -20,9 +20,8 @@ class fileman:
         },
         
         'strokes' : {
-            #'raw': None,
-            'pkl': 'strokes-gained.pkl',
-            'component': 'sg-{}.pkl' #.format()
+            'component': 'sg-{}.pkl', #.format()
+            'pkl': 'strokes-gained.pkl'
         },
         
         'optimizer': {
@@ -32,22 +31,28 @@ class fileman:
     }
     
     @classmethod
-    def fanduel(param=None):
-        return pkl_fs+paths['fanduel']['pkl'] if param is None else csv_fs+paths['fanduel']['csv']
+    def fanduel(cls, param=None):
+        return cls.pkl_fs + cls.paths['fanduel']['pkl'] if param is None else cls.csv_fs + cls.paths['fanduel']['csv']
     
     @classmethod
-    def strokes_gained(param=None):
-        return pkl_fs+paths['strokes']['pkl'] if component is None else pkl_fs+paths['strokes']['component'].format(shorten.get(param,param))
+    def strokes_gained(cls, param=None):
+        return cls.pkl_fs + cls.paths['strokes']['pkl'] if param is None else cls.pkl_fs + cls.paths['strokes']['component'].format(cls.shorten.get(param,param))
     
     @classmethod
-    def optimizer(param=None):
-        return pkl_fs+paths['optimizer'][f'{"clean" if param is None else "raw"}']
+    def optimizer(cls, param=None):
+        return cls.pkl_fs + cls.paths['optimizer'][f'{"clean" if param is None else "raw"}']
     
     @classmethod
-    def getfs(ftype, fparam):
+    def getfs(cls, ftype, fparam):
         
-        if ftype == 'strokes' and fparam is not None:
-            return strokes_gained(fparam)
+        if ftype == 'created':
+            return cls.root + f'lineups-created/{constants.tournament}.pkl'
         
-        return { 'fanduel': fanduel(fparam), 'strokes-gained': strokes_gained(fparam), 'optimizer': strokes_gained(fparam) }.get(ftype, None)
+        elif ftype == 'combined':
+            return cls.pkl_fs + 'combined.pkl'
+        
+        elif ftype == 'strokes' and fparam is not None:
+            return cls.strokes_gained(fparam)
+        
+        return {'fanduel': cls.fanduel(fparam), 'strokes': cls.strokes_gained(fparam), 'optimizer': cls.strokes_gained(fparam)}.get(ftype, None)
     

@@ -10,8 +10,9 @@ Id,Position,First Name,Nickname,Last Name,FPPG,Played,Salary,Game,Team,Opponent,
 78293-77994,G,Cameron,Cameron Davis,Davis,62.333333333333336,21,10900,,,,,,,,,G
 78293-78689,G,J.T.,J.T. Poston,Poston,51.2124989827474,24,10800,,,,,,,,,G
 78293-78719,G,Chez,Chez Reavie,Reavie,54.23043690557065,23,10700,,,,,,,,,G
-78293-78239,G,Charles,Charles Howell III,Howell III,64.0374984741211,16,10600,,,,O,Undisclosed,,,,G
+78293-78239,G,Charles,Charles Howell III,Howell III,64.0374984741211,16,10600,,,,,,,,,G
 78293-77997,G,Jason,Jason Day,Day,58.949999128069194,14,10500,,,,,,,,,G
+78293-137069,G,Joohyung,Joohyung Kim,Kim,68.39999898274739,6,10400,,,,,,,,,G
 78293-78241,G,Mark,Mark Hubbard,Hubbard,71.7388916015625,18,10400,,,,O,Undisclosed,,,,G
 78293-78390,G,Martin,Martin Laird,Laird,60.399997287326386,18,10300,,,,,,,,,G
 78293-78636,G,Ryan,Ryan Palmer,Palmer,50.077779134114586,18,10200,,,,,,,,,G
@@ -101,11 +102,13 @@ Id,Position,First Name,Nickname,Last Name,FPPG,Played,Salary,Game,Team,Opponent,
 78293-78449,G,David,David Lingmerth,Lingmerth,47.94545676491477,11,7400,,,,,,,,,G
 78293-77832,G,Paul,Paul Barjon,Barjon,46.40909090909091,22,7300,,,,,,,,,G
 78293-78120,G,Robert,Robert Garrigus,Garrigus,46.83999938964844,10,7300,,,,,,,,,G
+78293-78391,G,Rick,Rick Lamb,Lamb,65.5,2,7300,,,,,,,,,G
 78293-78582,G,Grayson,Grayson Murray,Murray,32.75555419921875,9,7300,,,,,,,,,G
 78293-77823,G,Aaron,Aaron Baddeley,Baddeley,49.23999938964844,10,7300,,,,,,,,,G
 78293-78598,G,Seung-Yul,Seung-Yul Noh,Noh,52.93157958984375,19,7200,,,,,,,,,G
 78293-78394,G,Andrew,Andrew Landry,Landry,38.81666564941406,12,7200,,,,,,,,,G
 78293-79484,G,Cole,Cole Hammer,Hammer,24,1,7200,,,,,,,,,G
+78293-79566,G,Chris,Chris Naegel,Naegel,48.23333231608073,3,7200,,,,,,,,,G
 78293-78811,G,Roger,Roger Sloan,Sloan,36.85769183819111,26,7200,,,,,,,,,G
 78293-82996,G,Joshua,Joshua Creel,Creel,33.94999864366319,18,7100,,,,,,,,,G
 78293-78972,G,Richy,Richy Werenski,Werenski,36.081817626953125,22,7100,,,,,,,,,G
@@ -119,25 +122,36 @@ Id,Position,First Name,Nickname,Last Name,FPPG,Played,Salary,Game,Team,Opponent,
 78293-173583,G,Mo,Mo Lim,Lim,,,7000,,,,,,,,,G
 78293-161549,G,Jared,Jared Wolfe,Wolfe,41.68421052631579,19,7000,,,,,,,,,G
 78293-173584,G,Dylan,Dylan Menante,Menante,,,7000,,,,,,,,,G
+78293-102674,G,Derek,Derek Lamely,Lamely,25.200000762939453,1,7000,,,,,,,,,G
 78293-173585,G,Jeff,Jeff Sorenson,Sorenson,,,7000,,,,,,,,,G
+78293-79647,G,Duffy,Duffy Waldorf,Waldorf,,,7000,,,,,,,,,G
 78293-78110,G,Tommy,Tommy Gainey,Gainey,38.8818192915483,11,7000,,,,,,,,,G
+78293-78631,G,Jeff,Jeff Overton,Overton,,,7000,,,,,,,,,G
 78293-77867,G,Jonas,Jonas Blixt,Blixt,31.43157958984375,19,7000,,,,,,,,,G
 78293-78122,G,Brian,Brian Gay,Gay,42.4933349609375,15,7000,,,,,,,,,G
+78293-77872,G,Jason,Jason Bohn,Bohn,21.125,4,7000,,,,,,,,,G
 78293-78909,G,D.J.,D.J. Trahan,Trahan,38.02222357855903,9,7000,,,,,,,,,G
 78293-77887,G,Ryan,Ryan Brehm,Brehm,34.48333231608073,12,7000,,,,,,,,,G
 78293-78910,G,Martin,Martin Trainer,Trainer,43.544442635995374,27,7000,,,,,,,,,G
+78293-173894,G,Daniel,Daniel Gale,Gale,,,7000,,,,,,,,,G
+78293-173893,G,Andre,Andre Metzger,Metzger,,,7000,,,,,,,,,G
 78293-79689,G,Jim,Jim Knous,Knous,52.95333251953125,15,7000,,,,,,,,,G
+78293-82763,G,Jonathan,Jonathan Kaye,Kaye,6.099999904632568,2,7000,,,,O,Undisclosed,,,,G
 78293-78927,G,Dawie,Dawie Van der Walt,Van der Walt,36.904761904761905,21,7000,,,,,,,,,G
 78293-78684,G,D.A.,D.A. Points,Points,37.73333401150174,9,7000,,,,,,,,,G
 78293-78690,G,Ted,Ted Potter Jr.,Potter Jr.,17.25,8,7000,,,,,,,,,G
 78293-77929,G,Greg,Greg Chalmers,Chalmers,41.97777642144097,9,7000,,,,,,,,,G
 78293-78959,G,Nick,Nick Watney,Watney,37.6439990234375,25,7000,,,,,,,,,G
 78293-78195,G,David,David Hearn,Hearn,39.49090853604403,11,7000,,,,,,,,,G
+78293-79477,G,Paul,Paul Goydos,Goydos,9.600000381469727,1,7000,,,,,,,,,G
 78293-77948,G,K.J.,K.J. Choi,Choi,25.649999618530273,2,7000,,,,,,,,,G
 78293-78207,G,J.J.,J.J. Henry,Henry,34.92857142857143,7,7000,,,,,,,,,G
 78293-78209,G,Mark,Mark Hensby,Hensby,32.039999389648436,5,7000,,,,,,,,,G
+78293-78482,G,Will,Will MacKenzie,MacKenzie,7.5,2,7000,,,,O,Undisclosed,,,,G
 78293-77975,G,Ben,Ben Crane,Crane,34.75555419921875,9,7000,,,,,,,,,G
+78293-85159,G,John,John Huston,Huston,11,1,7000,,,,,,,,,G
 78293-77993,G,Brian,Brian Davis,Davis,20.483333587646484,6,7000,,,,,,,,,G
+78293-78532,G,Parker,Parker McLachlin,McLachlin,9.175000190734863,8,7000,,,,,,,,,G
 78293-78539,G,George,George McNeill,McNeill,21.924999237060547,4,7000,,,,,,,,,G
 78293-78026,G,Brett,Brett Drewitt,Drewitt,37.92631450452303,19,7000,,,,,,,,,G
 78293-78542,G,John,John Merrick,Merrick,23.174999237060547,8,7000,,,,,,,,,G
@@ -149,3 +163,4 @@ Id,Position,First Name,Nickname,Last Name,FPPG,Played,Salary,Game,Team,Opponent,
 78293-78060,G,Matt,Matt Every,Every,16.77142878941127,7,7000,,,,,,,,,G
 78293-117242,G,Bo,Bo Van Pelt,Van Pelt,39.96666717529297,12,7000,,,,,,,,,G
 78293-77821,G,Arjun,Arjun Atwal,Atwal,32.23999938964844,5,7000,,,,,,,,,G
+78293-77822,G,Eric,Eric Axley,Axley,6.699999809265137,2,7000,,,,,,,,,G

@@ -6,7 +6,7 @@ tournament = '3m-open' # Automate somehow?
 
 focus_stat = 'putt-sg'
 focus_stat_2 = 'ott-sg'
-focus_stat_3='arg-sg'
+focus_stat_3 = 'arg-sg'
 
 create = True
 display_num = 10
