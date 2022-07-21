@@ -48,6 +48,9 @@ class fileman:
         if ftype == 'created':
             return cls.root + f'lineups-created/{constants.tournament}.pkl'
         
+        elif ftype == 'skills':
+            return cls.pkl_fs + 'skills-decomp.pkl'
+        
         elif ftype == 'combined':
             return cls.pkl_fs + 'combined.pkl'
         

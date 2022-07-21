@@ -5,22 +5,20 @@ import pandas as pd
 
 
 class Clean:
-    @staticmethod
-    def name(name):
-        return {
-            2: ' '.join(name.replace(' ', '').split(',').reverse()),
-            3: ' '.join(parts[1:]+[parts[0]])
-        }.get(len(name.split(' ')), name)
+    @classmethod
+    def name(cls, player):
+        parts = player.split(' ') if len(player)==3 else player.replace(' ', '').split(',')
+        formatting = { 2: ' '.join([parts[1], parts[0]]), 3: ' '.join(parts[1:]+[parts[0]]) }
+        return formatting.get(len(player.split(' ')), player)
 
-        
-    @staticmethod
-    def names(pinfo_list):
-        # for player in pinfo:
-        #     player['player_name'] = name(player['player_name'])
-        def conv(d):
-            return {k: name(v) if k == 'player_name' else v for k, v in d.items()}
-        
-        return tuple([ conv(pinfo) for pinfo in pinfo_list ])
+    @classmethod
+    def polish(cls, d):
+        return {k: cls.name(v) if k == 'player_name' else v for k, v in d.items()}
+
+
+    @classmethod
+    def names(cls, player_list):
+        return tuple([ cls.polish(player) for player in player_list ])
             
     @staticmethod
     def columns(df):
