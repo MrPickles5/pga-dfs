@@ -4,14 +4,25 @@ import matplotlib.pyplot as plt
 
 tournament = '3m-open' # Automate somehow?
 
-focus_stat = 'ttg-sg'
+focus_stat_1 = 'ttg-sg'
 focus_stat_2 = 'app-sg'
 focus_stat_3 = 'arg-sg'
+
+def focus_stats():
+
+    stats = [ focus_stat_1 ]
+    if focus_stat_2 is not None:
+        stats.append(focus_stat_2)
+        if focus_stat_3 is not None:
+            stats.append(focus_stat_3)
+
+    return tuple(stats)
+
 
 create = True
 display_num = 10
 
-keep_cols = [
+fanduel_cols = [
     # 'Id',
     'Nickname',
     'FPPG',

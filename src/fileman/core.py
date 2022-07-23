@@ -12,7 +12,7 @@ class fileman:
     fnames = {
         'combined': 'combined.pkl',
         'created': f'{constants.tournament}.pkl',
-        'fanduel': 'fanduel-data.pkl',
+        'fanduel': f'{constants.tournament}.pkl',
         'skills': 'skills-decomp.pkl',
         
         'strokes' : {
@@ -29,15 +29,15 @@ class fileman:
     # paths = { k: root+v for k,v in files.items() }
     @classmethod
     def combined(cls):
-        return cls.root + cls['combined']
+        return cls.root + cls.fnames['combined']
     
     @classmethod
     def created(cls):
-        return cls.root.replace('pickle-buffer', 'lineups-cretaed')+cls.fnames['created']
+        return cls.root.replace('pickle-buffer', 'lineups-created')+cls.fnames['created']
     
     @classmethod
-    def fanduel(cls):
-        return cls.root + cls.fnames['fanduel']
+    def fanduel(cls, param=None):
+        return cls.root + cls.fnames['fanduel'] if param is None else cls.root.replace('pickle-buffer', 'contest-files') + cls.fnames['fanduel'].replace('pkl', 'csv')
     
     @classmethod
     def skills(cls):
@@ -54,13 +54,10 @@ class fileman:
     @classmethod
     def getfs(cls, ftype, fparam):
         
-        if ftype == 'strokes' and fparam is not None:
-            return cls.strokes_gained(fparam)
-        
         ret_fs = {
             'combined': cls.combined(),
             'created': cls.created(),
-            'fanduel': cls.fanduel(),
+            'fanduel': cls.fanduel(fparam),
             'skills': cls.skills(),
             'strokes': cls.strokes_gained(fparam),
             'optimizer': cls.optimizer(fparam)

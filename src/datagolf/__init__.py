@@ -1,3 +1,3 @@
-from .core import datagolf
+from .core import DataGolf
 
-__version__="1.0.0"
+__version__='1.0.0'

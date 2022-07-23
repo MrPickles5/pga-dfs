@@ -1,5 +1,7 @@
 import pandas as pd
 
+import constants
+
 from fileman import fileman
 
 
@@ -12,6 +14,11 @@ class PickleJar:
     
     @staticmethod
     def load(ftype, fparam=None):
+        if ftype=='fanduel' and fparam=='raw':
+            ret = pd.read_csv( fileman.getfs(ftype, fparam), usecols=constants.fanduel_cols )
+            ret.columns = ret.columns.str.lower()
+            return ret
+        
         return pd.read_pickle( fileman.getfs(ftype, fparam) )
     
     @staticmethod

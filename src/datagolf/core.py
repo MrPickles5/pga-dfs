@@ -10,9 +10,10 @@ from .devtools.api_tools import URL
 from .modeling.skills import Decompose, Rating
 from .modeling.dfs import Projections
 from .modeling.baselines import Baselines
+from .modeling.rankings import Rankings
 
 
-class datagolf:
+class DataGolf:
     @cache
     def load_field():
         url='https://feeds.datagolf.com/field-updates?tour=pga&file_format=json&key=6a626b6c312c0d33cfe157d614b5'
@@ -33,7 +34,7 @@ class datagolf:
     def players_who_made_cut():
         return tuple(made_cut['name'].values.tolist())
 
-    def load_dfs():
+    def dfs():
         
         fd = Projections.load('pga', 'fanduel', 'main', 'json')
         dk = Projections.load('pga', 'draftkings', 'main', 'json')
@@ -46,8 +47,11 @@ class datagolf:
         
         return ret
 
-    def load_skills(decomp=True, tidy=True):
+    def skills(decomp=True, tidy=True):
         return Decompose.load('pga', 'json', tidy=tidy) if decomp else Rating.load('value', 'json', tidy=tidy)
     
-    def load_baselines(tidy=True):
+    def baselines(tidy=True):
         return Baselines.load('pga', '2,3,4,5', 'percent', 'json', tidy=tidy)
+    
+    def rankings():
+        return Rankings.load('json')
