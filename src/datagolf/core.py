@@ -33,7 +33,6 @@ class datagolf:
     def players_who_made_cut():
         return tuple(made_cut['name'].values.tolist())
 
-    @cache
     def load_dfs():
         
         fd = Projections.load('pga', 'fanduel', 'main', 'json')
@@ -47,10 +46,8 @@ class datagolf:
         
         return ret
 
-    @cache
     def load_skills(decomp=True, tidy=True):
         return Decompose.load('pga', 'json', tidy=tidy) if decomp else Rating.load('value', 'json', tidy=tidy)
     
-    @cache
     def load_baselines(tidy=True):
         return Baselines.load('pga', '2,3,4,5', 'percent', 'json', tidy=tidy)
