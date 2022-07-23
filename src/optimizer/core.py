@@ -51,8 +51,8 @@ class Optimizer:
     def lineup_analysis_wrapper(cls, lineup):
         return( cls.lineup_analysis(tuple(set(lineup.to_numpy()))) if cls.is_valid_lineup(tuple(set(lineup.to_numpy()))) else (0.0,)*len(constraints.cols_to_sum)  )
     
-    @staticmethod
-    def create_lineup_2_slices(slate_dict):
+    @classmethod
+    def create_lineup_2_slices(cls, slate_dict):
     #     2 things of three
         ret_list = list()
 
@@ -66,8 +66,8 @@ class Optimizer:
 
         return tuple(ret_list)
     
-    @staticmethod
-    def create_lineup_3_slices(slate_dict):
+    @classmethod
+    def create_lineup_3_slices(cls, slate_dict):
     #     3 things of two
         ret_list = list()
 
