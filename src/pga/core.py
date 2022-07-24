@@ -25,12 +25,9 @@ class PGA:
     
     @classmethod
     def strokes_gained_from(cls, component, abbreviate=True):
+        
         if component.lower() not in cls.components:
             print('ERROR: Enter valid strokes gained component:... \n')
-            return None
-        
-        if cls.components.get(component.lower(), None) is None:
-            print('ERROR: Never even loaded html...\n')
             return None
         
         ret = pd.read_html(cls.pga_root.format(cls.components[component]['url-id']))[1].reset_index(drop=True)

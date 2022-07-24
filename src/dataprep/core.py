@@ -76,21 +76,24 @@ class DataPrep:
         
         cls.add_constraints()
         ret = PickleJar.load('optimizer', fparam='raw')
-        
+        # print(ret.head()) # Good here
         projections = DataGolf.dfs()
-        probabilities = DataGolf.baselines() 
+        probabilities = DataGolf.baselines()
 
         projections.index = projections['name']
+        projections = projections.drop('name', axis=1)
+        
         probabilities.index = probabilities['name']
+        probabilities = probabilities.drop('name', axis=1)
 
-        ret['proj-pts'] = ret['name'].apply(lambda x: projections.loc[x,'points'] if x in ret.index else 0.0)
-        ret['proj-own'] = ret['name'].apply(lambda x: projections.loc[x,'ownership'] if x in ret.index else 0.0)
+        ret['proj-pts'] = ret['name'].apply(lambda x: projections.loc[x,'points'] if x in projections.index else -1.0)
+        ret['proj-own'] = ret['name'].apply(lambda x: projections.loc[x,'ownership'] if x in projections.index else 0.0)
 
-        ret['make-cut'] = ret['name'].apply(lambda x: probabilities.loc[x,'make-cut'] if x in ret.index else 0.0)
-        ret['top-10'] = ret['name'].apply(lambda x: probabilities.loc[x,'top-10(%)'] if x in ret.index else 0.0)
+        ret['make-cut'] = ret['name'].apply(lambda x: probabilities.loc[x,'make-cut'] if x in probabilities.index else 0.0)
+        ret['top-10'] = ret['name'].apply(lambda x: probabilities.loc[x,'top-10(%)'] if x in probabilities.index else 0.0)
 
         ret['salary'] /= 100
-
+        
         PickleJar.prepare(ret, 'optimizer')
         
         return None

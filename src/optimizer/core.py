@@ -111,7 +111,7 @@ class Optimizer:
         ret = pd.DataFrame(lineups, columns=['g1','g2','g3','g4','g5','g6'])
 
         # Badda bing
-        ret[constraints.cols_to_sum] = ret.parallel_apply( lineup_analysis_wrapper, axis=1, result_type='expand' )
+        ret[list(constraints.cols_to_sum)] = ret.parallel_apply( cls.lineup_analysis_wrapper, axis=1, result_type='expand' )
         ret = (ret
                .sort_values(by='proj-pts', ascending=False)
                .drop_duplicates()
@@ -131,5 +131,5 @@ class Optimizer:
     def Run(cls, sort_by=('proj-pts',)):
         print('Creating lineups...\n')
         cls.Create()
-        return output_lineups_by(sort_by)
+        return cls.output_lineups_by(sort_by)
     
