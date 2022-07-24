@@ -10,6 +10,9 @@ class Raw:
 
     rawdata = URL.historical_raw()
     event_ids = tuple(rawdata.keys())
+    event_fnames = list() #Will always be added to in <pull()>
+    
+    year = URL.get_year()
     
     @staticmethod
     def format_event_name(event):
@@ -21,6 +24,7 @@ class Raw:
         for eid in tqdm(cls.event_ids):
             event = cls.rawdata[eid]['event_name']
             event_fname = cls.format_event_name(event)
+            cls.event_fnames.append(event_fname)
             
             frames=list()
             
@@ -43,6 +47,7 @@ class Raw:
                 frames.append(df)
             
             ret = pd.concat(frames).reset_index(drop=True)
+            ret['year'] = cls.year
             
             PickleJar.prepare(ret, 'datagolf', event_fname)
             
@@ -64,3 +69,14 @@ class Raw:
         ret = pd.concat(frames).reset_index(drop=True)
         
         return ret.head(num)
+    
+    @classmethod
+    def load(cls, fname=None):
+        if fname is not None:
+            return PickleJar.load('datagolf', fname)
+        
+        ret = pd.concat([ PickleJar.load('datagolf', fname) for fname in cls.event_fnames ]).reset_index(drop=True)
+        PickleJar.prepare(ret, 'datagolf', 'MASTER')
+        return None
+        
+        

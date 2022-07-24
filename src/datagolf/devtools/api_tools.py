@@ -42,6 +42,9 @@ class URL:
         'year': '2022'
     }
     
+    @classmethod
+    def get_year(cls):
+        return cls.params['year']
     
 
     @classmethod

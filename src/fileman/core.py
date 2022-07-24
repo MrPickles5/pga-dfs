@@ -3,6 +3,8 @@ import pandas as pd
 
 import constants
 
+
+
 class fileman:
 #     Class attributes
     
@@ -40,7 +42,8 @@ class fileman:
     
     @classmethod
     def datagolf(cls, fname):
-        return cls.root.replace('pickle-buffer', 'datagolf-raw') + cls.fnames['datagolf'].format(fname)
+        return cls.root.replace('pickle-buffer', f'datagolf-raw') + cls.fnames['datagolf'].format(fname)
+
     
     @classmethod
     def fanduel(cls, param=None):
@@ -70,6 +73,7 @@ class fileman:
             'strokes': cls.strokes_gained(fparam),
             'optimizer': cls.optimizer(fparam)
         }
+        
         
         return ret_fs.get(ftype, None)
     

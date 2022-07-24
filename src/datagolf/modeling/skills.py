@@ -17,7 +17,7 @@ class StrokesGained:
         'sg_total': 'sg-total'
     }
     
-    pnames = tuple(PickleJar.load('fanduel')['name'].values.tolist())
+    # pnames = tuple(PickleJar.load('fanduel')['name'].values.tolist())
     
     @classmethod
     def load(cls, tidy=True):

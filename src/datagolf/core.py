@@ -73,4 +73,5 @@ class DataGolf:
     
     def raw():
         Raw.pull()
-        return Raw.preview()
+        Raw.load()
+        return 'MASTER.pkl successfully created...'
