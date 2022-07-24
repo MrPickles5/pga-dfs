@@ -8,8 +8,10 @@ class Clean:
     
     types = {
         'name': 'str',
+        'placement_str': 'str',
         'salary': 'int',
-        'later': 'uint8'
+        'later': 'uint8',
+        'placement': 'uint8'
     }
     
     @classmethod

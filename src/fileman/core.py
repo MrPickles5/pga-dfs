@@ -12,6 +12,9 @@ class fileman:
     fnames = {
         'combined': 'combined.pkl',
         'created': f'{constants.tournament}.pkl',
+        
+        'datagolf': '{}.pkl',
+        
         'fanduel': f'{constants.tournament}.pkl',
         'skills': 'skills-decomp.pkl',
         
@@ -36,6 +39,10 @@ class fileman:
         return cls.root.replace('pickle-buffer', 'lineups-created')+cls.fnames['created']
     
     @classmethod
+    def datagolf(cls, fname):
+        return cls.root.replace('pickle-buffer', 'datagolf-raw') + cls.fnames['datagolf'].format(fname)
+    
+    @classmethod
     def fanduel(cls, param=None):
         return cls.root + cls.fnames['fanduel'] if param is None else cls.root.replace('pickle-buffer', 'contest-files') + cls.fnames['fanduel'].replace('pkl', 'csv')
     
@@ -57,6 +64,7 @@ class fileman:
         ret_fs = {
             'combined': cls.combined(),
             'created': cls.created(),
+            'datagolf': cls.datagolf(fparam),
             'fanduel': cls.fanduel(fparam),
             'skills': cls.skills(),
             'strokes': cls.strokes_gained(fparam),

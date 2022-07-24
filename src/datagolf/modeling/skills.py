@@ -1,39 +1,10 @@
-import requests
-
-import numpy as np
 import pandas as pd
-
-from functools import cache
 
 from ..devtools.aux import Clean
 from ..devtools.api_tools import URL
 from picklejar import PickleJar
-
-
-class CourseFit:
     
-    renaming = {
-        'player_name': 'name',
-        'baseline_pred': 'baseline',
-        'final_pred': 'final',
-        'strokes_gained_category_adjustment': 'category-sg',
-        'true_sg_adjustments': 'true-sg',
-        'driving_accuracy_adjustment': 'driving-accuracy',
-        'total_fit_adjustment': 'total-fit'
-    }
-    
-    
-    @classmethod
-    def load(cls, tidy=True):
-        ret = (pd
-               .DataFrame(URL.skills_decomp(), columns=cls.renaming.keys())
-               .rename(cls.renaming, axis=1)
-              )
-        
-        return Clean.columns(ret) if tidy else URL.skills_decom()
-    
-    
-class Breakdown:
+class StrokesGained:
     
     renaming = {
         'player_name': 'name',
@@ -51,7 +22,7 @@ class Breakdown:
     @classmethod
     def load(cls, tidy=True):
         df = (pd
-              .DataFrame(URL.skills_rating(), columns=cls.renaming.keys())
+              .DataFrame(URL.strokes_gained(), columns=cls.renaming.keys())
               .rename(cls.renaming, axis=1)
              )
         
@@ -61,4 +32,31 @@ class Breakdown:
               )
         
         return Clean.columns(ret) if tidy else URL.skills_rating()
+    
+    
+class CourseFit:
+    
+    renaming = {
+        'player_name': 'name',
+        'baseline_pred': 'baseline',
+        'final_pred': 'final',
+        'strokes_gained_category_adjustment': 'category-sg',
+        'true_sg_adjustments': 'true-sg',
+        'driving_accuracy_adjustment': 'driving-accuracy',
+        'total_fit_adjustment': 'total-fit'
+    }
+    
+#     Add descriptions and option to output with data  --> 'baseline_pred': 'baseline prediction of player given past performances w/out adjusting for current course fit'
+    
+    
+    @classmethod
+    def load(cls, tidy=True):
+        ret = (pd
+               .DataFrame(URL.course_fit(), columns=cls.renaming.keys())
+               .rename(cls.renaming, axis=1)
+              )
+        
+        return Clean.columns(ret) if tidy else URL.skills_decom()
+    
+
         

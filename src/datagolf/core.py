@@ -7,10 +7,13 @@ from functools import cache
 
 from .devtools.aux import Clean
 from .devtools.api_tools import URL
-from .modeling.skills import Breakdown, CourseFit
-from .modeling.dfs import Projections
+from .modeling.skills import StrokesGained, CourseFit
+from .modeling.projections import Projections
 from .modeling.baselines import Baselines
 from .modeling.rankings import Rankings
+from .historical.betting import BettingOdds
+from .historical.dfs import DFS
+from .historical.raw import Raw
 
 
 class DataGolf:
@@ -47,11 +50,27 @@ class DataGolf:
         
         return Clean.columns(ret)
 
-    def skills(general=True, tidy=True):
-        return Breakdown.load(tidy=tidy) if general else CourseFit.load(tidy=tidy)
+    def strokes_gained(tidy=True):
+        return StrokesGained.load(tidy=tidy)
+    
+    def coursefit(tidy=True):
+        return CourseFit.load(tidy=tidy)
     
     def baselines(tidy=True):
         return Baselines.load()
     
     def rankings():
         return Rankings.load()
+    
+    def odds():
+        return BettingOdds.load()
+    
+    def event_ids():
+        return DFS.event_ids()
+    
+    def historical():
+        return DFS.load()
+    
+    def raw():
+        Raw.pull()
+        return Raw.preview()
