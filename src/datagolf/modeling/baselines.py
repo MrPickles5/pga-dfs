@@ -25,10 +25,10 @@ class Baselines:
     }
     
     @classmethod
-    def load(cls, tour, add_position, odds_format, file_format, tidy=True):
+    def load(cls, tidy=True):
         ret = (pd
-               .DataFrame(URL.pretournament_predictions(tour, add_position, odds_format, file_format), columns=cls.renaming.keys())
+               .DataFrame(URL.pretournament_predictions(), columns=cls.renaming.keys())
                .rename(cls.renaming, axis=1)
               )
         
-        return ret if tidy else URL.pretournament_predictions(tour, add_position, odds_format, file_format)
+        return Clean.columns(ret) if tidy else URL.pretournament_predictions()

@@ -7,7 +7,7 @@ from functools import cache
 
 from .devtools.aux import Clean
 from .devtools.api_tools import URL
-from .modeling.skills import Decompose, Rating
+from .modeling.skills import Breakdown, CourseFit
 from .modeling.dfs import Projections
 from .modeling.baselines import Baselines
 from .modeling.rankings import Rankings
@@ -36,8 +36,8 @@ class DataGolf:
 
     def dfs():
         
-        fd = Projections.load('pga', 'fanduel', 'main', 'json')
-        dk = Projections.load('pga', 'draftkings', 'main', 'json')
+        fd = Projections.load('fanduel')
+        dk = Projections.load('draftkings')
         
         dk = dk.rename({'ownership': 'dk-ownership'}, axis=1)
         ret = pd.concat([fd, dk['dk-ownership']], axis=1)
@@ -45,13 +45,13 @@ class DataGolf:
         ret = ret.drop('ownership', axis=1)
         ret = ret.rename({'dk-ownership': 'ownership'}, axis=1)
         
-        return ret
+        return Clean.columns(ret)
 
-    def skills(decomp=True, tidy=True):
-        return Decompose.load('pga', 'json', tidy=tidy) if decomp else Rating.load('value', 'json', tidy=tidy)
+    def skills(general=True, tidy=True):
+        return Breakdown.load(tidy=tidy) if general else CourseFit.load(tidy=tidy)
     
     def baselines(tidy=True):
-        return Baselines.load('pga', '2,3,4,5', 'percent', 'json', tidy=tidy)
+        return Baselines.load()
     
     def rankings():
-        return Rankings.load('json')
+        return Rankings.load()

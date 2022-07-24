@@ -21,11 +21,11 @@ class Rankings:
     }
     
     @classmethod
-    def load(cls,file_format):
+    def load(cls):
         ret = (pd
-               .DataFrame(URL.datagolf_rankings(file_format), columns=cls.renaming.keys())
+               .DataFrame(URL.datagolf_rankings(), columns=cls.renaming.keys())
                .rename(cls.renaming, axis=1)
               )
         
-        return ret
+        return Clean.columns(ret)
         

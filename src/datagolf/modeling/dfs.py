@@ -21,10 +21,11 @@ class Projections:
     }
     
     @classmethod
-    def load(cls, tour, site, slate, file_format):
+    def load(cls, site):
         ret = (pd
-               .DataFrame(URL.dfs_projections(tour, site, slate, file_format), columns=cls.renaming.keys())
+               .DataFrame(URL.dfs_projections(site), columns=cls.renaming.keys())
                .rename(cls.renaming, axis=1)
+               .reset_index(drop=True)
               )
         
         return ret

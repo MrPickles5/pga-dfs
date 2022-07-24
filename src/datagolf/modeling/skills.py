@@ -10,7 +10,7 @@ from ..devtools.api_tools import URL
 from picklejar import PickleJar
 
 
-class Decompose:
+class CourseFit:
     
     renaming = {
         'player_name': 'name',
@@ -22,17 +22,18 @@ class Decompose:
         'total_fit_adjustment': 'total-fit'
     }
     
+    
     @classmethod
-    def load(cls, tour, file_format, tidy=True):
+    def load(cls, tidy=True):
         ret = (pd
-               .DataFrame(URL.skills_decomp(tour, file_format), columns=cls.renaming.keys())
+               .DataFrame(URL.skills_decomp(), columns=cls.renaming.keys())
                .rename(cls.renaming, axis=1)
               )
         
-        return ret if tidy else URL.skills_decom(tour, file_format)
+        return Clean.columns(ret) if tidy else URL.skills_decom()
     
     
-class Rating:
+class Breakdown:
     
     renaming = {
         'player_name': 'name',
@@ -48,9 +49,9 @@ class Rating:
     pnames = tuple(PickleJar.load('fanduel')['name'].values.tolist())
     
     @classmethod
-    def load(cls, tour, display, tidy=True):
+    def load(cls, tidy=True):
         df = (pd
-              .DataFrame(URL.skills_rating(tour, display), columns=cls.renaming.keys())
+              .DataFrame(URL.skills_rating(), columns=cls.renaming.keys())
               .rename(cls.renaming, axis=1)
              )
         
@@ -59,5 +60,5 @@ class Rating:
                .reset_index(drop=True)
               )
         
-        return ret if tidy else URL.skills_rating(tour, display)
+        return Clean.columns(ret) if tidy else URL.skills_rating()
         

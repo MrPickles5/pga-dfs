@@ -5,6 +5,13 @@ import pandas as pd
 
 
 class Clean:
+    
+    types = {
+        'name': 'str',
+        'salary': 'int',
+        'later': 'uint8'
+    }
+    
     @classmethod
     def name(cls, player):
         parts = player.split(' ') if len(player)==3 else player.replace(' ', '').split(',')
@@ -20,11 +27,12 @@ class Clean:
     def names(cls, player_list):
         return tuple([ cls.polish(player) for player in player_list ])
             
-    @staticmethod
-    def columns(df):
-        for col in df.columns:
-            df[col]=df[col].astype({'name': 'str'}.get(col, 'float32'))
-        return df
+    @classmethod
+    def columns(cls, df):
+        ret = df.dropna().reset_index(drop=True)
+        for col in ret.columns:
+            ret[col]=ret[col].astype(cls.types.get(col, 'float32'))
+        return ret
     
     
     
